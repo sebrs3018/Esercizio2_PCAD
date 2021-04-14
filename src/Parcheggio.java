@@ -7,12 +7,11 @@ public class Parcheggio {
     }
 
 
-    public void entrata(){
-        System.out.println("entro");
+    public void  entrata(String s){
 
         if(nroPosti <= 0){
             try {
-                System.out.println("Non ci sono posti disponibili... Aspetta un sec");
+                System.out.println("Non ci sono posti disponibili... "  + s + " Aspetta  un sec");
                 wait(); //mando in attesa il thread che ha chiamato questa funzione
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -22,8 +21,8 @@ public class Parcheggio {
     }
 
     public void uscita(){
-        notify(); //"sblocco" momentaneamente il cliente (thread)
         nroPosti++;
+        notifyAll(); //"sblocco" momentaneamente il cliente (thread)
     }
 
     public int PostiLiberi(){
