@@ -13,10 +13,10 @@ public class Main {
 
         c1.start();
         c2.start();
-//        c3.start();
-//        c4.start();
-//        c5.start();
-//        c6.start();
-//        c7.start();
+        c3.start();
+        c4.start();
+        c5.start();
+        c6.start();
+        c7.start();
     }
 }

@@ -1,18 +1,19 @@
 public class Parcheggio {
 
-    private int nroPosti;
+    private volatile int  nroPosti;
 
     public Parcheggio(int _nroPosti){
         nroPosti = _nroPosti;
     }
 
 
-    public void  entrata(String s){
+    public synchronized void entrata(String ThreadName){
 
         if(nroPosti <= 0){
             try {
-                System.out.println("Non ci sono posti disponibili... "  + s + " Aspetta  un sec");
+                System.out.println("Non ci sono posti disponibili (" + nroPosti + ")... "+ ThreadName +"  Aspetta  un sec");
                 wait(); //mando in attesa il thread che ha chiamato questa funzione
+                System.out.println("\t**** Ripartenza: "+ ThreadName + "  nro posti: " + nroPosti);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -20,9 +21,10 @@ public class Parcheggio {
             nroPosti--;
     }
 
-    public void uscita(){
+    public synchronized void uscita(String s){
         nroPosti++;
-        notifyAll(); //"sblocco" momentaneamente il cliente (thread)
+        System.out.println("esco "+ s + ", nro posti: " + nroPosti) ;
+        notify(); //"sblocco" momentaneamente il cliente (thread)
     }
 
     public int PostiLiberi(){
@@ -30,7 +32,7 @@ public class Parcheggio {
     }
 
 
-    public void chiusura(){
+    public synchronized void chiusura(){
         notifyAll();    //sblocco tutti i thtead in attesa
     }
 
