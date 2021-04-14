@@ -16,13 +16,14 @@ public class Cliente extends Thread {
 
         //entro nel parcheggio sse ci sono dei posti liberi
 //            System.out.println("entro " + name);
-        parcheggio.entrata(name);
-        try { // simuliamo un delay
-            Thread.sleep ((int) Math.random() * 2000000);
-            System.out.println(" sono nel parcheggio... " + name);
-        } catch (InterruptedException e) { }
-        parcheggio.uscita(name);
-//        }
+
+            parcheggio.entrata(name);       //consuma
+            try { // simuliamo un delay
+                System.out.println(" \t\t### sono nel parcheggio... " + name + " ###");
+                Thread.sleep ((int) Math.random() * 20000);
+            } catch (InterruptedException e) { }
+            parcheggio.uscita(name);        //produce
+
     }
 
 }

@@ -2,7 +2,7 @@ public class Main {
     public static void main(String[] args) throws
             InterruptedException {
 
-        Parcheggio p = new Parcheggio(1);
+        Parcheggio p = new Parcheggio(5);
         Cliente c1 = new Cliente(p, "Tread1");
         Cliente c2 = new Cliente(p, "Thread2");
         Cliente c3 = new Cliente(p, "Thread3");
