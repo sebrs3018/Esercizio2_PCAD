@@ -1,9 +1,9 @@
-public class Parcheggio_S {
+public class Parcheggio {
 
     private volatile int  nroPosti;
     private volatile boolean chiusura = false;
 
-    public Parcheggio_S(int _nroPosti){
+    public Parcheggio(int _nroPosti){
         nroPosti = _nroPosti;
     }
 
@@ -11,16 +11,14 @@ public class Parcheggio_S {
 
         while(PostiLiberi() <= 0 && !isItClosed()) {
                 try {
-                    System.out.println("Waiting " + ThreadName);
                     wait();
-                    System.out.println("Riparto " + ThreadName + " " + isItClosed());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
         }
 
         if(isItClosed()){
-            System.out.println("\tMa... E' chiuso, mi tocca uscire:  " + ThreadName);
+            System.out.println("\tE' chiuso, non posso entrare:  " + ThreadName);
             return;
         }
         decrementPlaces();
@@ -33,7 +31,7 @@ public class Parcheggio_S {
         }
       else {
           incrementPlaces();
-          System.out.println(" \t\t### esco dal parcheggio... " + s + " nroPosti: " + nroPosti +"###");
+          System.out.println(" \t\t\t### esco dal parcheggio... " + s + " ###");
       }
     }
 
@@ -60,9 +58,6 @@ public class Parcheggio_S {
     }
 
     public synchronized void chiusura(){
-        System.out.println("\t\t*****************************************");
-        System.out.println("\t\t*************** Chiusura! ***************");
-        System.out.println("\t\t*****************************************");
         CloseParking(); //setto variabile chiusura a true
         notifyAll();    //sblocco tutti i thtead in attesa
     }

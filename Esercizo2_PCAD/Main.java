@@ -1,7 +1,7 @@
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Main_S {
+public class Main {
 
     static int counter = 0;
     static Timer timer;
@@ -9,19 +9,18 @@ public class Main_S {
     public static void main(String[] args) throws
             InterruptedException {
 
-        Parcheggio_S p = new Parcheggio_S(1);
-        Cliente_S c1 = new Cliente_S(p, "Tread_1");
-        Cliente_S c2 = new Cliente_S(p, "Thread_2");
-        Cliente_S c3 = new Cliente_S(p, "Thread_3");
-        Cliente_S c4 = new Cliente_S(p, "Thread_4");
-        Cliente_S c5 = new Cliente_S(p, "Thread_5");
-        Cliente_S c6 = new Cliente_S(p, "Thread_6");
-        Cliente_S c7 = new Cliente_S(p, "Thread_7");
+        Parcheggio p = new Parcheggio(1);
+        Cliente c1 = new Cliente(p, "Tread_1");
+        Cliente c2 = new Cliente(p, "Thread_2");
+        Cliente c3 = new Cliente(p, "Thread_3");
+        Cliente c4 = new Cliente(p, "Thread_4");
+        Cliente c5 = new Cliente(p, "Thread_5");
+        Cliente c6 = new Cliente(p, "Thread_6");
+        Cliente c7 = new Cliente(p, "Thread_7");
 
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-//                System.out.println("TimerTask executing counter is: " + counter);
                 if(counter == 1){
                     p.chiusura();   //è tempo di chiusura
                     timer.cancel();
