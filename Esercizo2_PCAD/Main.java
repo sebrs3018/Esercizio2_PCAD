@@ -24,6 +24,9 @@ public class Main {
                 if(counter == 1){
                     p.chiusura();   //è tempo di chiusura
                     timer.cancel();
+                    System.out.println("\n***********************************\n" +
+                            "****  IL PARCHEGGIO HA CHIUSO! ****" +
+                            "\n***********************************");
                 }
                 counter++;//increments the counter
             }

@@ -19,7 +19,7 @@ public class Cliente extends Thread {
             while(!parcheggio.isItClosed() && counter < NUM_REP) {
                 parcheggio.entrata(name);
                     if(parcheggio.isItClosed())  //Questo controllo interno mi permette di non proseguire nel caso in cui il parcheggio abbia chiuso al momento dell'entrata
-                        return;
+                        break;
                 try { // simuliamo un delay
                     System.out.println(" \t\t### sono nel parcheggio... " + name + " ### ");
                     Thread.sleep ((int) Math.random() * 20000);
@@ -29,6 +29,6 @@ public class Cliente extends Thread {
                 parcheggio.uscita(name);
                 counter++;
             }
-        System.out.println( name+ " ha finito correttamente");
+        System.out.println( name + " ha finito correttamente");
     }
 }
