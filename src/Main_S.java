@@ -3,7 +3,6 @@ import java.util.TimerTask;
 
 public class Main_S {
 
-
     static int counter = 0;
     static Timer timer;
 
@@ -19,11 +18,10 @@ public class Main_S {
         Cliente_S c6 = new Cliente_S(p, "Thread_6");
         Cliente_S c7 = new Cliente_S(p, "Thread_7");
 
-
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("TimerTask executing counter is: " + counter);
+//                System.out.println("TimerTask executing counter is: " + counter);
                 if(counter == 1){
                     p.chiusura();   //è tempo di chiusura
                     timer.cancel();
@@ -41,9 +39,7 @@ public class Main_S {
         c7.start();
 
         timer = new Timer("MyTimer");//create a new Timer
-        timer.scheduleAtFixedRate(timerTask, 20, 1);//this line starts the timer at the same time its executed
+        timer.scheduleAtFixedRate(timerTask, 200, 1);//this line starts the timer at the same time its executed
     }
-
-
-    }
+}
 
